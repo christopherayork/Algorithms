@@ -18,16 +18,16 @@ from itertools import permutations
 
 
 def rock_paper_scissors(n):
-    if n == 0: return [[]]
-    rpm = ['rock', 'paper', 'scissors']
-    # result = heaps_algorithm(rpm, n)
-    perms = permutations(rpm, n)
-    result = []
-    for o in perms:
-        print(o)
-        result.append(list(o))
-    print(result)
-    return result
+  opts = [['rock'], ['paper'], ['scissors']]
+  perms = []
+  def rps(n, prefix=[]):
+    if n == 0:
+      perms.append(prefix)
+    else:
+      for x in range(len(opts)):
+        rps(n - 1, prefix + opts[x])
+  rps(n)
+  return perms
 
 
 if __name__ == "__main__":
